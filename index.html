@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Brownbag - Text Transformer</title>
+  <script data-main="app.config" src="js/lib/require.js"></script>
+  <style>
+  .row {
+    clear:both;
+    width: 100%;
+  }
+  .row > .half {
+    width: 50%;
+    float: left;
+  }
+  .doge {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: teal;
+  }
+  textarea {
+    width: 95%;
+    min-height: 400px;
+    font-size: 1.1em;
+  }
+  textarea[readonly] {
+    border: 0;
+    background-color: whiteSmoke;
+  }
+  </style>
+</head>
+<body>
+  <section ng-controller="TransformCtrl">
+    <form>
+      <h1>Text transformer</h1>
+      <div class="row">
+        <!-- ng-change -->
+        <div class="half">
+          <textarea ng-model="text" ng-change="trans()"></textarea>
+        </div>
+        <!-- ng-class -->
+        <div class="half">
+          <textarea readonly ng-model="transformText" ng-class="transformType"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <!-- ng-repeat, ng-change -->
+        <select ng-change="trans()" ng-model="transformType">
+          <option ng-repeat="(type, fn) in transformTypes">{{ type }}</option>
+        </select>
+        <!-- $http, $q, ng-if -->
+        <button ng-click="hipsterjesus()" ng-disabled="searchingforjesus">
+          <span ng-if="!searchingforjesus">hipster ipusm</span>
+          <span ng-if="!!searchingforjesus">fetching...</span>
+        </button>
+      </div>
+    </form>
+  </section>
+</body>
+</html>
